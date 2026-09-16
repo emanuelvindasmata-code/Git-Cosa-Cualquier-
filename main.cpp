@@ -8,7 +8,6 @@ using namespace std;
 struct Tarea {
     string descripcion;
     bool completada;
-    string prioridad;
 };
 
 // Protoripos
@@ -56,37 +55,33 @@ int main() {
 //Agrega una nueva tarea al vector
 void agregarTarea(vector<Tarea>& tareas) {
     Tarea nueva;
-    
+   
     cout << "Ingrese la tarea: ";
     getline(cin, nueva.descripcion);
-    
+   
     if (nueva.descripcion == "") {
         cout << "La tarea no puede estar vacia";
         return;
     }
-    
-    cout << "Ingrese la prioridad: ";
-    getline(cin, nueva.prioridad);
-    
+   
     nueva.completada = false;
     tareas.push_back(nueva);
     cout << "Nueva tarea añadida correctamente";
-    
+   
 }
 
 //Muestra todas las tareas
 void mostrarTareas(const vector<Tarea>& tareas) {
-    // Numero. [Estado] [Prioridad] descripcion
     cout << "\nTareas\n\n";
     for (int i = 0; i < tareas.size(); i++){
         cout << i + 1 << ".";
-        
+       
         if (tareas[i].completada == true){
             cout << "[Completada]";
         } else {
             cout << "[Pendiente]";
         }
-        cout << "[" << tareas[i].prioridad << "]";
+       
         cout << tareas[i].descripcion << endl;
     }
  }
@@ -95,18 +90,19 @@ void mostrarTareas(const vector<Tarea>& tareas) {
  void completarTarea(vector<Tarea>& tareas) {
     //Imprimir tareas
     mostrarTareas(tareas);
-    
+   
     //Cambiar tarea.completa a true
     //Numero de tarea a completar
     int numeroTarea;
     cout << "Seleccione la tarea completada: ";
     cin >> numeroTarea;
-    
+   
     if(numeroTarea < 1 or numeroTarea > tareas.size()){
         cout << "Tarea inválida";
         return;
     }
-    
+   
     tareas[numeroTarea - 1].completada = true;
     cout << "Tarea completada correctamente" << endl;
 }
+
